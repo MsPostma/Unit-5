@@ -4,11 +4,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Calculator extends JFrame implements ActionListener {
-    private JTextField display;
-    private StringBuilder currentInput;
+    static JTextField display;
+    static String currentInput;
 
     public Calculator() {
-        currentInput = new StringBuilder();
+        currentInput = "";
         display = new JTextField();
         display.setEditable(false);
         display.setHorizontalAlignment(JTextField.RIGHT);
@@ -39,51 +39,20 @@ public class Calculator extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
 
         if (command.charAt(0) == 'C') {
-            currentInput.setLength(0);
+            currentInput = "";
             display.setText("");
-        } else if (command.charAt(0) == '=') {
-            try {
-                double result = evaluate(currentInput.toString());
-                display.setText(Double.toString(result));
-                currentInput.setLength(0);
-            } catch (Exception ex) {
-                display.setText("Error");
-                currentInput.setLength(0);
-            }
-        } else {
-            currentInput.append(command);
-            display.setText(currentInput.toString());
+        } 
+        else if (command.charAt(0) == '=') {
+            
+        } 
+        else {
+            currentInput += command;
+            display.setText(currentInput);
         }
-    }
-
-    private double evaluate(String expression) {
-        // Simple evaluation logic (not handling operator precedence)
-        String[] tokens = expression.split("(?<=[-+*/])|(?=[-+*/])");
-        double result = Double.parseDouble(tokens[0]);
-        for (int i = 1; i < tokens.length; i += 2) {
-            String operator = tokens[i];
-            double operand = Double.parseDouble(tokens[i + 1]);
-            switch (operator) {
-                case "+":
-                    result += operand;
-                    break;
-                case "-":
-                    result -= operand;
-                    break;
-                case "*":
-                    result *= operand;
-                    break;
-                case "/":
-                    result /= operand;
-                    break;
-            }
-        }
-        return result;
     }
 
     public static void main(String[] args) {
