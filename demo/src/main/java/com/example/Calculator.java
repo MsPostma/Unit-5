@@ -8,7 +8,7 @@ public class Calculator extends JFrame implements ActionListener {
     static JTextField display;
     static String currentInput;
 
-    public Calculator() {
+    public Calculator() { //gr 12 (constructor)
         currentInput = "";
         display = new JTextField();
         display.setEditable(false);
@@ -26,7 +26,8 @@ public class Calculator extends JFrame implements ActionListener {
 
         for (String text : buttons) {
             JButton button = new JButton(text);
-            button.addActionListener(this);
+            
+            button.addActionListener(this); //gr 12
             panel.add(button);
         }
 
@@ -61,6 +62,7 @@ public class Calculator extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new Calculator();
+        Calculator calc = new Calculator();
+        
     }
 }
