@@ -1,8 +1,12 @@
 package com.example;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
 import javax.swing.*;
+
 
 public class Calculator extends JFrame implements ActionListener {
     static JTextField display;
@@ -49,11 +53,17 @@ public class Calculator extends JFrame implements ActionListener {
             display.setText("");
         } 
         else if (command.charAt(0) == '=') {
-            
-
-
-
-            
+            //update imports!
+            //updae the pom.xml file as well!
+            try {
+                Expression expression = new ExpressionBuilder(currentInput).build();
+                double result = expression.evaluate();
+                display.setText(Double.toString(result));
+                currentInput = "";
+            } catch (Exception ex) {
+                display.setText("Error");
+                currentInput = "";
+            }
         } 
         else {
             currentInput += command;
