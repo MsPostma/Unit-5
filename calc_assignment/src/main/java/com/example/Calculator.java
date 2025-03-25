@@ -1,16 +1,23 @@
 package com.example;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import net.objecthunter.exp4j.Expression;
-import net.objecthunter.exp4j.ExpressionBuilder;
-import javax.swing.*;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 public class Calculator extends JFrame implements ActionListener {
     static JTextField display;
     static String currentInput;
+
+    static double firstNum;
+    static double secondNum;
+    static String operation;
 
     public Calculator() { //gr 12 (constructor)
         currentInput = "";
@@ -53,21 +60,36 @@ public class Calculator extends JFrame implements ActionListener {
             display.setText("");
         } 
         else if (command.charAt(0) == '=') {
-            //update imports!
-            //updae the pom.xml file as well!
-            try {
-                Expression expression = new ExpressionBuilder(currentInput).build();
-                double result = expression.evaluate();
-                display.setText(Double.toString(result));
-                currentInput = "";
-            } catch (Exception ex) {
-                display.setText("Error");
-                currentInput = "";
+            
+            //search for the operation
+            for(int i = 0; i<currentInput.length(); i++){
+                Character currentChar = currentInput.charAt(i);
+                if(!Character.isDigit(currentChar)){
+                    if(currentChar!='.'){
+                        operation = currentChar + "";
+                        firstNum = Double.parseDouble(currentInput.substring(0, i));
+                        secondNum = Double.parseDouble(currentInput.substring(i+1));
+                    }
+                }
             }
+
+
+            if(operation.equals("+")){
+                double result = firstNum + secondNum;
+                display.setText(result + "");
+            }
+            else if(operation.equals("-")){
+                double result = firstNum - secondNum;
+                display.setText(result + "");
+            }
+            //implement the other operations
+            
         } 
         else {
             currentInput += command;
             display.setText(currentInput);
+
+
         }
     }
 
