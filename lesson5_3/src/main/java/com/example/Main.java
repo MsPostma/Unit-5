@@ -9,6 +9,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Main{
 
@@ -32,6 +34,11 @@ public class Main{
 
         String[] answers = {"a","b","c","d"};
         JComboBox list2 = new JComboBox(answers);
+        list2.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+              System.out.println(list2.getSelectedItem());
+            }
+         });
 
 
         jfrm.add(box);
