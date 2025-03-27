@@ -73,7 +73,6 @@ public class Calculator extends JFrame implements ActionListener {
                 }
             }
 
-
             if(operation.equals("+")){
                 double result = firstNum + secondNum;
                 display.setText(result + "");
