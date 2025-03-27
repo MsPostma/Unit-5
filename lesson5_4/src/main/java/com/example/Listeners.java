@@ -1,6 +1,5 @@
 package com.example;
 
-
 import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -10,22 +9,21 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 
 public class Listeners {
-
 	public static void main(String[] args) {
 		JFrame jfrm = new JFrame("Mouse Test");
 		jfrm.setSize(300 ,300);
 		jfrm.setLayout(new FlowLayout());
 		
         jfrm.addMouseListener(new MouseAdapter() { 
-        public void mousePressed(MouseEvent me) { 
-            System.out.println("Clicked: "+ me.getX()); 
-        } 
-        public void mouseEntered(MouseEvent e) {
-            System.out.println("Entered");
-        }
-        public void mouseExited(MouseEvent e){
-            System.out.println("Left");
-        }
+            public void mousePressed(MouseEvent me) { 
+                System.out.println("Clicked: "+ me.getX()); 
+            } 
+            public void mouseEntered(MouseEvent e) {
+                System.out.println("Entered");
+            }
+            public void mouseExited(MouseEvent e){
+                System.out.println("Left");
+            }
         });
         
 
@@ -37,7 +35,7 @@ public class Listeners {
               System.out.println("Moved: " + me.getX());
             }
         
-          }); 
+        }); 
 
 
         jfrm.addKeyListener(new KeyListener() { 
@@ -53,7 +51,7 @@ public class Listeners {
             public void keyTyped(KeyEvent e) {
            
             }
-          });
+        });
     
 		jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jfrm.setVisible(true);
